@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class TmTest {
-
     @Test
     public void testMusicSearch(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
