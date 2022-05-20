@@ -181,6 +181,55 @@ public class WebTest {
         driver.quit();
 
     }
+
+//    Подтвердите, что имена создателей сайта:
+    //    Oliver Schade
+//    Gregor Scheithauer
+//    Stefan Scheler
+//    Шаги:
+//            1. Открыть вебсайт на базовой странице
+//2. Считать название первого подзаголовка первого пункта меню
+//3. Подтвердить, что имена создателей сайта:
+//    Oliver Schade
+//    Gregor Scheithauer
+//    Stefan Scheler
+//4.Подтвердить, что имена создателей соответстсвуют ожидаемому результату
+//4. закрыть сайт
+    @Test
+    public void confirmTheNamesOfTheCreatorsOfTheSite() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/ChromeDriver/chromedriver";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult1 = "Oliver Schade";
+        String expectedResult2 = "Gregor Scheithauer";
+        String expectedResult3 = "Stefan Scheler";
+
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement menuStart = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/']"));
+        menuStart.click();
+
+        WebElement menuSubMenuStartTeam = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']" + "/ul[@id='submenu']/li/a[@href='team.html']"));
+
+        menuSubMenuStartTeam.click();
+
+        WebElement OliverSchade = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/h3"));
+        String actualResult1 = OliverSchade.getText();
+
+        WebElement GregorScheithauer = driver.findElement(By.xpath("//*[@id='main']/h3[2]"));
+        String actualResult2 = GregorScheithauer.getText();
+
+        WebElement StefanScheler = driver.findElement(By.xpath("//*[@id=\'main\']/h3[3]"));
+        String actualResult3 = StefanScheler.getText();
+
+        Assert.assertEquals(actualResult1, expectedResult1);
+        Assert.assertEquals(actualResult2, expectedResult2);
+        Assert.assertEquals(actualResult3, expectedResult3);
+        driver.quit();
+    }
 }
 
 
