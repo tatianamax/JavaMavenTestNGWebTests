@@ -355,7 +355,7 @@ public class WebTest {
 //4. Закрыть браузер
 
     @Test
-    public void tetsValidateText(){
+    public void testValidateText(){
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "/Applications/ChromeDriver/chromedriver";
         String url = "http://www.99-bottles-of-beer.net/";
@@ -381,10 +381,48 @@ public class WebTest {
         String actualResult = Text.getText();
 
         Assert.assertEquals(actualResult,expectedResult);
-
+        driver.quit();
     }
 
+//    Подтвердите, что нажав на пункт меню Browse Languages,
+//    пользователь увидит таблицу со следующими названиями для первого и второго столбцов:
+//    Language Author
+//
+//    Шаги:
+//            1. Открыть вебсайт на базовой странице
+//2. Нажать на пункт меню Browse Languages
+//3. Считать названия первого и второго столбцов таблицы
+//3. Подтвердить, что названия соответствует ожидаемым
+//4. Закрыть браузер
 
+    @Test
+    public void testValidateNamesForTheFirstAndSecondColumnsMenuBrowseLanguages(){
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/ChromeDriver/chromedriver";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "Language";
+        String expectedResult1 = "Author";
+
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement menuBrowseLanguages = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']" + "/ul[@id='menu']/li/a[@href='/abc.html']"));
+        menuBrowseLanguages.click();
+
+        WebElement language = driver.findElement(By.xpath("//div[@id='main']/table/tbody/tr/th[1]"));
+        String actualResult = language.getText();
+
+        WebElement author = driver.findElement(By.xpath("//div[@id='main']/table/tbody/tr/th[2]"));
+        String actualResult1 = author.getText();
+
+        Assert.assertEquals(actualResult,expectedResult);
+        Assert.assertEquals(actualResult1, expectedResult1);
+
+        driver.quit();
+
+    }
 
 }
 
