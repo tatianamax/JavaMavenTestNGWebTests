@@ -27,12 +27,10 @@ public class WebTest {
 
         driver.get(url);
 
-        WebElement menuBrowseLanguages = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']"
-                + "/ul[@id='menu']/li/a[@href='/abc.html']"));
+        WebElement menuBrowseLanguages = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']" + "/ul[@id='menu']/li/a[@href='/abc.html']"));
         menuBrowseLanguages.click();
 
-        WebElement menuStart = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']" +
-                "/ul[@id='menu']/li/a[@href='/']"));
+        WebElement menuStart = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']" + "/ul[@id='menu']/li/a[@href='/']"));
         menuStart.click();
 
         WebElement h2 = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/h2"));
@@ -93,9 +91,7 @@ public class WebTest {
         WebDriver driver = new ChromeDriver();
         driver.get(url);
 
-        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']" +
-                "/div[@id='navigation']/ul[@id='menu']"
-                + "/li/a[@href='/submitnewlanguage.html']"));
+        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']" + "/div[@id='navigation']/ul[@id='menu']" + "/li/a[@href='/submitnewlanguage.html']"));
         menuSubmitNewLanguage.click();
         String actualResult = "Submit new Language";
 
@@ -105,7 +101,8 @@ public class WebTest {
     }
 
 
-    //    Подтвердите, что на странице по базовой ссылке последний пункт меню имеет подзаголовок Submit new Language
+    //    Подтвердите, что на странице по базовой ссылке последний пункт
+    //    меню имеет подзаголовок Submit new Language
     //
     //    Шаги:
     //            1. Открыть вебсайт на базовой странице
@@ -126,14 +123,10 @@ public class WebTest {
         WebDriver driver = new ChromeDriver();
         driver.get(url);
 
-        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']" +
-                "/div[@id='navigation']/ul[@id='menu']"
-                + "/li/a[@href='/submitnewlanguage.html']"));
+        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']" + "/div[@id='navigation']/ul[@id='menu']" + "/li/a[@href='/submitnewlanguage.html']"));
         menuSubmitNewLanguage.click();
 
-        WebElement menuItemSubtitleSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']" +
-                "/div[@id='navigation']"
-                + "/ul[@id='submenu']/li/a[@href='./submitnewlanguage.html']"));
+        WebElement menuItemSubtitleSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']" + "/div[@id='navigation']" + "/ul[@id='submenu']/li/a[@href='./submitnewlanguage.html']"));
         menuItemSubtitleSubmitNewLanguage.click();
 
         String actualResult = "Submit new Language";
@@ -163,14 +156,11 @@ public class WebTest {
 
         driver.get(url);
 
-        WebElement menuBrowseLanguages = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']"
-                + "/ul[@id='menu']/li/a[@href='/abc.html']"));
+        WebElement menuBrowseLanguages = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']" + "/ul[@id='menu']/li/a[@href='/abc.html']"));
 
         menuBrowseLanguages.click();
 
-        WebElement menuItemSubtitleBrowseLanguages = driver.findElement(By.xpath("//body/div[@id='wrap']" +
-                "/div[@id='navigation']/ul[@id='submenu']"
-                + "/li/a[@href='0.html']"));
+        WebElement menuItemSubtitleBrowseLanguages = driver.findElement(By.xpath("//body/div[@id='wrap']" + "/div[@id='navigation']/ul[@id='submenu']" + "/li/a[@href='0.html']"));
 
         menuItemSubtitleBrowseLanguages.click();
 
@@ -182,7 +172,7 @@ public class WebTest {
 
     }
 
-//    Подтвердите, что имена создателей сайта:
+    //    Подтвердите, что имена создателей сайта:
     //    Oliver Schade
 //    Gregor Scheithauer
 //    Stefan Scheler
@@ -196,7 +186,7 @@ public class WebTest {
 //4.Подтвердить, что имена создателей соответстсвуют ожидаемому результату
 //4. закрыть сайт
     @Test
-    public void confirmTheNamesOfTheCreatorsOfTheSite() {
+    public void testConfirmTheNamesOfTheCreatorsOfTheSite() {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "/Applications/ChromeDriver/chromedriver";
         String url = "http://www.99-bottles-of-beer.net/";
@@ -216,13 +206,13 @@ public class WebTest {
 
         menuSubMenuStartTeam.click();
 
-        WebElement OliverSchade = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/h3"));
+        WebElement OliverSchade = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/h3[1]"));
         String actualResult1 = OliverSchade.getText();
 
-        WebElement GregorScheithauer = driver.findElement(By.xpath("//*[@id='main']/h3[2]"));
+        WebElement GregorScheithauer = driver.findElement(By.xpath("//div[@id='main']/h3[2]"));
         String actualResult2 = GregorScheithauer.getText();
 
-        WebElement StefanScheler = driver.findElement(By.xpath("//*[@id=\'main\']/h3[3]"));
+        WebElement StefanScheler = driver.findElement(By.xpath("//div[@id='main']/h3[3]"));
         String actualResult3 = StefanScheler.getText();
 
         Assert.assertEquals(actualResult1, expectedResult1);
@@ -230,7 +220,85 @@ public class WebTest {
         Assert.assertEquals(actualResult3, expectedResult3);
         driver.quit();
     }
+
+//    Придумайте и автоматизируйте свой собственный тест кейс
+//    на сайте http://www.99-bottles-of-beer.net/
+//
+//    Шаги:
+//            1. Открыть вебсайт на базовой странице
+//2. Считать название второго подзаголовка первого пункта меню
+//3. Подтвердить, что пользователь видит на странице заголовок «Lyrics of the song 99 Bottles of Beer»
+//            4. Закрыть сайт
+
+
+
+    @Test
+    public void testValidateTitleOnPageSongLyrics() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/ChromeDriver/chromedriver";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "Lyrics of the song 99 Bottles of Beer";
+
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement menuStart = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']" + "/ul[@id='menu']/li/a[@href='/']"));
+        menuStart.click();
+
+        WebElement SubmenuSongLyrics = driver.findElement(By.xpath("//div[@id='navigation']" + "/ul[@id='submenu']/li[2]/a"));
+        SubmenuSongLyrics.click();
+
+        WebElement h2 = driver.findElement(By.xpath("//div[@id='main']/h2"));
+        String actualResult = h2.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
+        driver.quit();
+    }
+
+//    Подтвердите, что если на странице
+//    по ссылке http://www.99-bottles-of-beer.net/submitnewlanguage.html ,
+//    пользователь нажмет кнопку Submit Language,
+//    не заполнив информацию в обязательных полях, будет показана ошибка
+//
+//    Error: Precondition failed - Incomplete Input.
+//
+//    Шаги:
+//            1. Открыть вебсайт на странице
+//2. Нажать на кнопку Submit Language
+//3. Подтвердить, что на странице показана ошибка
+//4. Подтвердить, что текст ошибки соответствует ожидаемому
+//5. Закрыть браузер
+
+    @Test
+    public void testErrorOnPageSubmitNewLanguage(){
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/ChromeDriver/chromedriver";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "Error: Precondition failed - Incomplete Input.";
+
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']"
+                + "/div[@id='navigation']/ul[@id='menu']" + "/li/a[@href='/submitnewlanguage.html']"));
+        menuSubmitNewLanguage.click();
+
+        WebElement Submitanguage = driver.findElement(By.xpath("//form/p/input[@name='submitlanguage']"));
+        Submitanguage.click();
+
+        WebElement Error = driver.findElement(By.xpath("//p"));
+        String actualResult = Error.getText();
+
+        Assert.assertEquals(actualResult,expectedResult);
+        driver.quit();
+    }
 }
+
+
+
 
 
 
