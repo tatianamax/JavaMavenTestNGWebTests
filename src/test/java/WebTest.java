@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class WebTest {
@@ -231,7 +232,6 @@ public class WebTest {
 //            4. Закрыть сайт
 
 
-
     @Test
     public void testValidateTitleOnPageSongLyrics() {
         String chromeDriver = "webdriver.chrome.driver";
@@ -272,7 +272,7 @@ public class WebTest {
 //5. Закрыть браузер
 
     @Test
-    public void testErrorOnPageSubmitNewLanguage(){
+    public void testErrorOnPageSubmitNewLanguage() {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "/Applications/ChromeDriver/chromedriver";
         String url = "http://www.99-bottles-of-beer.net/";
@@ -282,8 +282,7 @@ public class WebTest {
         WebDriver driver = new ChromeDriver();
 
         driver.get(url);
-        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']"
-                + "/div[@id='navigation']/ul[@id='menu']" + "/li/a[@href='/submitnewlanguage.html']"));
+        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']" + "/div[@id='navigation']/ul[@id='menu']" + "/li/a[@href='/submitnewlanguage.html']"));
         menuSubmitNewLanguage.click();
 
         WebElement Submitanguage = driver.findElement(By.xpath("//form/p/input[@name='submitlanguage']"));
@@ -292,10 +291,104 @@ public class WebTest {
         WebElement Error = driver.findElement(By.xpath("//p"));
         String actualResult = Error.getText();
 
-        Assert.assertEquals(actualResult,expectedResult);
+        Assert.assertEquals(actualResult, expectedResult);
         driver.quit();
     }
+
+//    Если на странице по ссылке http://www.99-bottles-of-beer.net/submitnewlanguage.html ,
+//    //  пользователь нажмет кнопку Submit Language,
+//    //  не заполнив информацию в обязательных полях, будет показана ошибка с текстом
+//
+//    Error: Precondition failed - Incomplete Input.
+//
+//    Подтвертите, что в тексте ошибки слова Error, Precondition,
+//    Incomplete и Input написаны с большой буквы, а слово failed  написано  с маленькой буквы.
+//    Так же подтвердите, что в тексте ошибки содержатся знаки :, -  и .
+//
+//            Шаги:
+//            1. Открыть вебсайт на странице
+//2. Нажать на кнопку Submit Language
+//3. Считать текст ошибки
+//4. Подтвердить requirenments
+//5. Закрыть браузер
+    @Ignore
+    @Test
+    public void testValidateWord() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/ChromeDriver/chromedriver";
+        String url = "http://www.99-bottles-of-beer.net/submitnewlanguage.html";
+        String expectedResult1 = "Error";
+        String expectedResult2 = "Precondition";
+        String expectedResult3 = "Incomplete";
+        String expectedResult4 = "Input";
+        String expectedResult5 = "failed";
+        String expectedResult6 = ":";
+        String expectedResult7 = "-";
+        String expectedResult8 = ".";
+
+
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']" + "/div[@id='navigation']/ul[@id='menu']" + "/li/a[@href='/submitnewlanguage.html']"));
+        menuSubmitNewLanguage.click();
+
+        WebElement Submitanguage = driver.findElement(By.xpath("//form/p/input[@name='submitlanguage']"));
+        Submitanguage.click();
+
+        WebElement Error = driver.findElement(By.xpath("//p"));
+
+    }
+//    Подтвердите, что на странице по ссылке
+//    http://www.99-bottles-of-beer.net/submitnewlanguage.html в первом пункте списка пользователь видит текст
+//
+//    IMPORTANT: Take your time! The more carefully you fill out this form
+//            (especially the language name and description),
+//    the easier it will be for us and the faster your language will show up on this page.
+//    We don't have the time to mess around with fixing your descriptions etc. Thanks for your understanding.
+//
+//    Шаги:
+//            1. Открыть вебсайт на странице
+//2. Считать текст
+//3. Подтвердить, что текст соответствует ожидаемому
+//4. Закрыть браузер
+
+    @Test
+    public void tetsValidateText(){
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/Applications/ChromeDriver/chromedriver";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "IMPORTANT: Take your time! The more carefully you fill out this form " +
+                "(especially the language name and description), " +
+                "the easier it will be for us and the faster your language will show up on this page." +
+                " We don't have the time to mess around with fixing your descriptions etc." +
+                " Thanks for your understanding.";
+
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']"
+                + "/div[@id='navigation']/ul[@id='menu']" + "/li/a[@href='/submitnewlanguage.html']"));
+        menuSubmitNewLanguage.click();
+
+        WebElement Submitanguage = driver.findElement(By.xpath("//form/p/input[@name='submitlanguage']"));
+        Submitanguage.click();
+
+        WebElement Text = driver.findElement(By.xpath("//div[@id='main']/ul/li[1]"));
+        String actualResult = Text.getText();
+
+        Assert.assertEquals(actualResult,expectedResult);
+
+    }
+
+
+
 }
+
+
 
 
 
